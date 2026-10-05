@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Registration - CarePlus</title>
+
+    <link rel="stylesheet" href="/css/doctor-register.css">
+</head>
+
+<body>
+
+<div class="register-container">
+
+    <h1>Doctor Registration</h1>
+
+    <% if (error) { %>
+        <div class="error-message">
+            <%= error %>
+        </div>
+    <% } %>
+
+    <form action="/auth/doctor-register" method="POST">
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm password"
+                    required
+                >
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Specialization</label>
+                <input
+                    type="text"
+                    name="specialization"
+                    placeholder="e.g. Cardiologist"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+
+                <select name="department" required>
+
+                    <option value="">
+                        Select Department
+                    </option>
+
+                    <% departments.forEach(department => { %>
+
+                        <option value="<%= department._id %>">
+                            <%= department.name %>
+                        </option>
+
+                    <% }) %>
+
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Qualification</label>
+
+                <input
+                    type="text"
+                    name="qualification"
+                    placeholder="e.g. MBBS, MD"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Experience (Years)</label>
+
+                <input
+                    type="number"
+                    name="experience"
+                    min="0"
+                    placeholder="e.g. 5"
+                    required
+                >
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                name="phone"
+                placeholder="Enter phone number"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Available Days</label>
+
+            <div class="days-container">
+
+                <label class="day-option">
+                    <input type="checkbox" name="availableDays" value="Monday">
+                    Monday
+                </label>
+
+                <label class="day-option">
+                    <input type="checkbox" name="availableDays" value="Tuesday">
+                    Tuesday
+                </label>
+
+                <label class="day-option">
+                    <input type="checkbox" name="availableDays" value="Wednesday">
+                    Wednesday
+                </label>
+
+                <label class="day-option">
+                    <input type="checkbox" name="availableDays" value="Thursday">
+                    Thursday
+                </label>
+
+                <label class="day-option">
+                    <input type="checkbox" name="availableDays" value="Friday">
+                    Friday
+                </label>
+
+                <label class="day-option">
+                    <input type="checkbox" name="availableDays" value="Saturday">
+                    Saturday
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Available Time</label>
+
+            <input
+                type="text"
+                name="availableTime"
+                placeholder="e.g. 10:00 AM - 2:00 PM"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>About Doctor</label>
+
+            <textarea
+                name="about"
+                rows="5"
+                placeholder="Write something about the doctor..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="register-btn"
+        >
+            Register as Doctor
+        </button>
+
+    </form>
+
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="/auth/login">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Appointment Confirmed | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/appointments.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="confirmation-page">
+
+        <div class="confirmation-container">
+
+            <div class="confirmation-icon">
+                ✓
+            </div>
+
+            <span class="confirmation-label">
+                CAREPLUS HEALTHCARE
+            </span>
+
+            <h1>
+                Appointment Confirmed!
+            </h1>
+
+            <p class="confirmation-message">
+                Your appointment has been successfully booked.
+            </p>
+
+
+            <div class="confirmation-card">
+
+                <div class="confirmation-doctor">
+
+                    <h2>
+                        <%= appointment.doctor
+                            ? appointment.doctor.name
+                            : "Doctor" %>
+                    </h2>
+
+                    <p>
+                        <%= appointment.doctor
+                            ? appointment.doctor.specialization
+                            : "Medical Specialist" %>
+                    </p>
+
+                </div>
+
+
+                <div class="confirmation-details">
+
+                    <div class="confirmation-detail">
+
+                        <span>📅</span>
+
+                        <div>
+                            <small>Date</small>
+
+                            <strong>
+                                <%= new Date(
+                                    appointment.appointmentDate
+                                ).toLocaleDateString("en-IN", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric"
+                                }) %>
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="confirmation-detail">
+
+                        <span>⏰</span>
+
+                        <div>
+                            <small>Time</small>
+
+                            <strong>
+                                <%= appointment.appointmentTime %>
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="confirmation-detail">
+
+                        <span>📝</span>
+
+                        <div>
+                            <small>Reason</small>
+
+                            <strong>
+                                <%= appointment.reason %>
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="confirmation-detail">
+
+                        <span>📌</span>
+
+                        <div>
+                            <small>Status</small>
+
+                            <strong class="confirmation-status">
+                                <%= appointment.status %>
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="confirmation-actions">
+
+                <a
+                    href="/appointments/history"
+                    class="view-history-btn"
+                >
+                    View My Appointments
+                </a>
+
+                <a
+                    href="/patient/doctors"
+                    class="find-doctor-btn"
+                >
+                    Find Another Doctor
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

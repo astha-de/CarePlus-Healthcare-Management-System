@@ -1,0 +1,187 @@
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-appointment-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.appointment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.appointment-header h3 {
+    margin: 0 0 6px;
+    font-size: 19px;
+}
+
+.appointment-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* STATUS */
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge.confirmed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.completed {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-badge.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+
+/* DETAILS */
+
+.appointment-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 20px 0;
+}
+
+.detail-item {
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.detail-item span {
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.detail-item strong {
+    display: block;
+    color: #1f2937;
+    font-size: 14px;
+}
+
+.detail-item.reason {
+    grid-column: span 4;
+}
+
+
+/* ACTIONS */
+
+.appointment-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.appointment-actions form {
+    margin: 0;
+}
+
+.appointment-actions button {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* BUTTONS */
+
+.confirm-btn {
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.reject-btn {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.complete-btn {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.delete-btn {
+    background: #6b7280;
+    color: #ffffff;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .appointment-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .detail-item.reason {
+        grid-column: span 2;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-appointment-card {
+        padding: 18px;
+    }
+
+    .appointment-header {
+        flex-direction: column;
+    }
+
+    .appointment-details {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-item.reason {
+        grid-column: span 1;
+    }
+
+    .appointment-actions {
+        flex-direction: column;
+    }
+
+    .appointment-actions button {
+        width: 100%;
+    }
+}

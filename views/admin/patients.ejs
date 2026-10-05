@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Patients | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="admin-dashboard">
+
+        <div class="admin-container">
+
+            <div class="admin-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Manage Patients</h1>
+
+                <p>
+                    View all registered patients in the CarePlus healthcare system.
+                </p>
+
+            </div>
+
+
+            <!-- PAGE ACTIONS -->
+
+            <div class="admin-page-actions">
+
+                <a href="/admin/dashboard" class="admin-back-btn">
+                    ← Dashboard
+                </a>
+
+            </div>
+
+
+            <!-- PATIENTS TABLE -->
+
+            <section class="doctors-table-section">
+
+                <% if (patients.length === 0) { %>
+
+                    <div class="admin-empty-message">
+
+                        <h3>No patients found</h3>
+
+                        <p>
+                            There are no patients registered in the system.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
+                                    <th>Date of Birth</th>
+                                    <th>Blood Group</th>
+                                    <th>Address</th>
+                                    <th>Emergency Contact</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% patients.forEach(patient => { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                <%= patient.user
+                                                    ? patient.user.name
+                                                    : "N/A"
+                                                %>
+                                            </strong>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.user
+                                                ? patient.user.email
+                                                : "N/A"
+                                            %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.phone || "N/A" %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.gender || "N/A" %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.dateOfBirth
+                                                ? new Date(patient.dateOfBirth).toLocaleDateString()
+                                                : "N/A"
+                                            %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.bloodGroup || "N/A" %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.address || "N/A" %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= patient.emergencyContact || "N/A" %>
+                                        </td>
+
+                                    </tr>
+
+                                <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <% } %>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find a Doctor | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/doctors.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="doctors-page">
+
+        <div class="doctors-container">
+
+            <!-- Header -->
+
+            <div class="doctors-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Find a Doctor</h1>
+
+                <p>
+                    Search for doctors and book an appointment with the right specialist.
+                </p>
+
+            </div>
+
+
+            <!-- Search and Filter -->
+
+            <section class="doctor-search-section">
+
+                <form
+                    action="/patient/doctors"
+                    method="GET"
+                    class="doctor-search-form"
+                >
+
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search doctor or specialization..."
+                        value="<%= search || '' %>"
+                    >
+
+
+                    <select name="department">
+
+                        <option value="">
+                            All Departments
+                        </option>
+
+                        <% departments.forEach(department => { %>
+
+                            <option
+                                value="<%= department._id %>"
+                                <%= selectedDepartment === department._id.toString()
+                                    ? "selected"
+                                    : ""
+                                %>
+                            >
+                                <%= department.name %>
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- Doctors List -->
+
+            <section class="doctors-list-section">
+
+                <% if (doctors.length === 0) { %>
+
+                    <div class="empty-doctors">
+
+                        <h3>No doctors found</h3>
+
+                        <p>
+                            Try another doctor name or department.
+                        </p>
+
+                        <a href="/patient/doctors">
+                            View All Doctors
+                        </a>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="doctors-grid">
+
+                        <% doctors.forEach(doctor => { %>
+
+                            <div class="doctor-card">
+
+                                
+
+                                <!-- Doctor Information -->
+
+                                <div class="doctor-card-content">
+
+                                    <span class="doctor-department">
+
+                                        <%= doctor.department
+                                            ? doctor.department.name
+                                            : "General Medicine"
+                                        %>
+
+                                    </span>
+
+
+                                    <h2>
+                                        <%= doctor.name %>
+                                    </h2>
+
+
+                                    <p class="doctor-specialization">
+                                        <%= doctor.specialization %>
+                                    </p>
+
+
+                                    <p>
+                                        <strong>Qualification:</strong>
+                                        <%= doctor.qualification %>
+                                    </p>
+
+
+                                    <p>
+                                        <strong>Experience:</strong>
+                                        <%= doctor.experience %> years
+                                    </p>
+
+
+                                    <p>
+                                        <strong>Available Time:</strong>
+                                        <%= doctor.availableTime %>
+                                    </p>
+
+
+                                    <!-- Actions -->
+
+                                    <div class="doctor-card-actions">
+
+                                        <a
+                                            href="/patient/doctors/<%= doctor._id %>"
+                                            class="view-doctor-btn"
+                                        >
+                                            View Details
+                                        </a>
+
+
+                                        <a
+                                            href="/appointments/book/<%= doctor._id %>"
+                                            class="book-appointment-btn"
+                                        >
+                                            Book Appointment
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        <% }) %>
+
+                    </div>
+
+                <% } %>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

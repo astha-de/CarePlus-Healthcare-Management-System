@@ -1,0 +1,639 @@
+/* =================================
+   DEPARTMENT MANAGEMENT
+================================= */
+
+.admin-dashboard {
+    min-height: 80vh;
+    padding: 50px 20px;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.admin-header {
+    margin-bottom: 35px;
+}
+
+.admin-header span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 1px;
+}
+
+.admin-header h1 {
+    margin: 8px 0;
+    font-size: 32px;
+    color: #111827;
+}
+
+.admin-header p {
+    color: #6b7280;
+}
+
+
+/* ==============================
+   STATISTICS
+============================== */
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 45px;
+}
+
+.admin-stat-card {
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.admin-stat-card h3 {
+    margin: 0 0 15px;
+    font-size: 15px;
+    color: #6b7280;
+}
+
+.admin-stat-card strong {
+    font-size: 32px;
+    color: #2563eb;
+}
+
+
+/* ==============================
+   MANAGEMENT
+============================== */
+
+.admin-management h2 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #111827;
+}
+
+.management-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.management-card {
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.management-card h3 {
+    margin-top: 0;
+    color: #111827;
+}
+
+.management-card p {
+    min-height: 48px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.management-card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 17px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.management-card a:hover {
+    background: #1d4ed8;
+}
+
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .admin-dashboard {
+        padding: 30px 15px;
+    }
+
+    .admin-header h1 {
+        font-size: 26px;
+    }
+
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================
+   ADMIN DOCTORS PAGE
+========================================= */
+
+.admin-page-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.admin-back-btn,
+.admin-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-back-btn {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.admin-back-btn:hover {
+    background: #e5e7eb;
+}
+
+.admin-add-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.admin-add-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================
+   DOCTORS TABLE
+========================================= */
+
+.doctors-table-section {
+    margin-top: 20px;
+}
+
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: #ffffff;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    padding: 16px;
+    text-align: left;
+    background: #f8fafc;
+    color: #374151;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table td {
+    padding: 16px;
+    color: #4b5563;
+    font-size: 14px;
+    border-bottom: 1px solid #eef0f3;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.admin-table td strong {
+    color: #111827;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.admin-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-edit-btn,
+.admin-delete-btn {
+    padding: 8px 13px;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-edit-btn {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.admin-edit-btn:hover {
+    background: #bfdbfe;
+}
+
+.admin-delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.admin-delete-btn:hover {
+    background: #fecaca;
+}
+
+.admin-action-buttons form {
+    margin: 0;
+}
+
+
+/* =========================================
+   EMPTY MESSAGE
+========================================= */
+
+.admin-empty-message {
+    padding: 50px 20px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+}
+
+.admin-empty-message h3 {
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.admin-empty-message p {
+    color: #6b7280;
+}
+
+/* =========================================
+   ADD DOCTOR FORM
+========================================= */
+
+.admin-form-section {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.admin-doctor-form {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.days-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.days-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 9px 12px;
+    background: #f3f4f6;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.days-checkboxes input {
+    width: auto;
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.admin-submit-btn {
+    border: none;
+    padding: 11px 20px;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-submit-btn:hover {
+    background: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+
+    .admin-doctor-form {
+        padding: 25px 20px;
+    }
+
+    .admin-form-actions {
+        flex-direction: column;
+    }
+
+    .admin-form-actions a,
+    .admin-form-actions button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+/* =========================================
+DEPARTMENT MANAGEMENT
+========================================= */
+
+.department-form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+max-width: 750px;
+}
+
+.department-form .form-group {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.department-form label {
+font-size: 14px;
+font-weight: 600;
+color: #334155;
+}
+
+.department-form input,
+.department-form textarea {
+width: 100%;
+padding: 12px 14px;
+border: 1px solid #d1d5db;
+border-radius: 8px;
+font-size: 15px;
+font-family: inherit;
+outline: none;
+background: #ffffff;
+box-sizing: border-box;
+transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.department-form input:focus,
+.department-form textarea:focus {
+border-color: #2563eb;
+box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.department-form textarea {
+resize: vertical;
+min-height: 100px;
+}
+
+.admin-primary-btn {
+width: fit-content;
+padding: 12px 20px;
+border: none;
+border-radius: 8px;
+background: #2563eb;
+color: #ffffff;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admin-primary-btn:hover {
+background: #1d4ed8;
+transform: translateY(-1px);
+}
+
+/* =========================================
+DEPARTMENT GRID
+========================================= */
+
+.department-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+margin-top: 20px;
+}
+
+.department-card {
+display: flex;
+flex-direction: column;
+gap: 15px;
+padding: 22px;
+background: #ffffff;
+border: 1px solid #e5e7eb;
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.department-card:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.department-icon {
+width: 50px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #eff6ff;
+border-radius: 10px;
+font-size: 25px;
+}
+
+.department-content h3 {
+margin: 0 0 8px;
+font-size: 19px;
+color: #1e293b;
+}
+
+.department-content p {
+margin: 0;
+color: #64748b;
+font-size: 14px;
+line-height: 1.6;
+}
+
+.delete-btn {
+width: fit-content;
+padding: 9px 16px;
+border: none;
+border-radius: 7px;
+background: #ef4444;
+color: #ffffff;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+background: #dc2626;
+}
+
+/* =========================================
+EMPTY DEPARTMENT STATE
+========================================= */
+
+.empty-admin {
+text-align: center;
+padding: 50px 20px;
+color: #64748b;
+}
+
+.empty-admin > div {
+font-size: 45px;
+margin-bottom: 15px;
+}
+
+.empty-admin h3 {
+margin: 0 0 8px;
+color: #334155;
+font-size: 20px;
+}
+
+.empty-admin p {
+margin: 0;
+font-size: 14px;
+}
+
+/* =========================================
+ALERTS
+========================================= */
+
+.alert {
+padding: 13px 16px;
+margin-bottom: 20px;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 500;
+}
+
+.alert-error {
+background: #fef2f2;
+color: #b91c1c;
+border: 1px solid #fecaca;
+}
+
+.alert-success {
+background: #f0fdf4;
+color: #15803d;
+border: 1px solid #bbf7d0;
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+
+.department-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+}
+
+@media (max-width: 650px) {
+
+
+.department-grid {
+    grid-template-columns: 1fr;
+}
+
+.department-form {
+    max-width: 100%;
+}
+
+.admin-primary-btn {
+    width: 100%;
+}
+
+.department-card {
+    padding: 18px;
+}
+
+
+}

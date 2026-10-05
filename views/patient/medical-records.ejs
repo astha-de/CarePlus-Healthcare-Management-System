@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medical Records | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="/css/medical-records.css">
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-container">
+
+            <section class="welcome-box">
+                <div>
+                    <p>CAREPLUS HEALTHCARE</p>
+
+                    <h1>My Medical Records</h1>
+
+                    <p>
+                        View your diagnosis, prescriptions and medical notes.
+                    </p>
+                </div>
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Medical History</h2>
+                        <p>Your records from completed appointments.</p>
+                    </div>
+                </div>
+
+
+                <% if (medicalRecords.length === 0) { %>
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">🩺</div>
+
+                        <h3>No Medical Records</h3>
+
+                        <p>
+                            You don't have any medical records yet.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="medical-record-list">
+
+                        <% medicalRecords.forEach(record => { %>
+
+                            <div class="medical-record-card">
+
+                                <div class="record-header">
+
+                                    <div>
+                                        <h3>
+                                            <%= record.doctor
+                                                ? record.doctor.name
+                                                : "Doctor"
+                                            %>
+                                        </h3>
+
+                                        <% if (record.doctor) { %>
+
+                                            <p>
+                                                <%= record.doctor.specialization %>
+                                            </p>
+
+                                        <% } %>
+                                    </div>
+
+                                    <span class="record-date">
+
+                                        <%= new Date(record.recordDate).toLocaleDateString(
+                                            "en-IN",
+                                            {
+                                                day: "2-digit",
+                                                month: "short",
+                                                year: "numeric"
+                                            }
+                                        ) %>
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="record-content">
+
+                                    <div class="record-item">
+
+                                        <h4>Diagnosis</h4>
+
+                                        <p>
+                                            <%= record.diagnosis %>
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="record-item">
+
+                                        <h4>Prescription</h4>
+
+                                        <p>
+                                            <%= record.prescription || "No prescription provided." %>
+                                        </p>
+
+                                    </div>
+
+
+                                    <div class="record-item">
+
+                                        <h4>Doctor's Notes</h4>
+
+                                        <p>
+                                            <%= record.notes || "No additional notes." %>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        <% }) %>
+
+                    </div>
+
+                <% } %>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

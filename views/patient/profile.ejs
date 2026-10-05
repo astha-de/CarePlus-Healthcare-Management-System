@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <%- include("../partials/navbar") %>
+
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-container">
+
+            <!-- Page Header -->
+            <section class="profile-header">
+
+                <div>
+                    <p class="welcome-label">Account Settings</p>
+
+                    <h1>My Profile</h1>
+
+                    <p>
+                        Manage your personal and healthcare information.
+                    </p>
+                </div>
+
+                <a
+                    href="/patient/dashboard"
+                    class="dashboard-btn"
+                >
+                    ← Dashboard
+                </a>
+
+            </section>
+
+
+            <!-- Alerts -->
+
+            <% if (success) { %>
+
+                <div class="profile-alert success-alert">
+                    ✓ <%= success %>
+                </div>
+
+            <% } %>
+
+
+            <% if (error) { %>
+
+                <div class="profile-alert error-alert">
+                    ⚠ <%= error %>
+                </div>
+
+            <% } %>
+
+
+
+            <!-- Profile Layout -->
+
+            <section class="profile-layout">
+
+
+                <!-- Basic Information -->
+
+                <div class="profile-card">
+
+                    <div class="profile-card-header">
+
+                        <div>
+                            <h2>Personal Information</h2>
+
+                            <p>
+                                Your basic account information
+                            </p>
+                        </div>
+
+                        <div class="profile-avatar">
+                            <%= patient.user.name.charAt(0).toUpperCase() %>
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-info-grid">
+
+                        <div class="profile-info">
+
+                            <span>Name</span>
+
+                            <strong>
+                                <%= patient.user.name %>
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-info">
+
+                            <span>Email</span>
+
+                            <strong>
+                                <%= patient.user.email %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Update Profile -->
+
+                <div class="profile-card">
+
+                    <div class="profile-card-header">
+
+                        <div>
+                            <h2>Healthcare Information</h2>
+
+                            <p>
+                                Update your personal details
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        action="/patient/profile"
+                        method="POST"
+                        class="profile-form"
+                    >
+
+
+                        <!-- Phone -->
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                value="<%= patient.phone || '' %>"
+                            >
+
+                        </div>
+
+
+
+                        <!-- Date of Birth -->
+
+                        <div class="form-group">
+
+                            <label for="dateOfBirth">
+                                Date of Birth
+                            </label>
+
+                            <input
+                                type="date"
+                                id="dateOfBirth"
+                                name="dateOfBirth"
+                                value="<%= patient.dateOfBirth ? new Date(patient.dateOfBirth).toISOString().split('T')[0] : '' %>"
+                            >
+
+                        </div>
+
+
+
+                        <!-- Gender -->
+
+                        <div class="form-group">
+
+                            <label for="gender">
+                                Gender
+                            </label>
+
+                            <select
+                                id="gender"
+                                name="gender"
+                            >
+
+                                <option value="">
+                                    Select Gender
+                                </option>
+
+                                <option
+                                    value="Male"
+                                    <%= patient.gender === "Male" ? "selected" : "" %>
+                                >
+                                    Male
+                                </option>
+
+                                <option
+                                    value="Female"
+                                    <%= patient.gender === "Female" ? "selected" : "" %>
+                                >
+                                    Female
+                                </option>
+
+                                <option
+                                    value="Other"
+                                    <%= patient.gender === "Other" ? "selected" : "" %>
+                                >
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Blood Group -->
+
+                        <div class="form-group">
+
+                            <label for="bloodGroup">
+                                Blood Group
+                            </label>
+
+                            <select
+                                id="bloodGroup"
+                                name="bloodGroup"
+                            >
+
+                                <option value="">
+                                    Select Blood Group
+                                </option>
+
+                                <% const bloodGroups = [
+                                    "A+",
+                                    "A-",
+                                    "B+",
+                                    "B-",
+                                    "AB+",
+                                    "AB-",
+                                    "O+",
+                                    "O-"
+                                ]; %>
+
+
+                                <% bloodGroups.forEach(group => { %>
+
+                                    <option
+                                        value="<%= group %>"
+                                        <%= patient.bloodGroup === group ? "selected" : "" %>
+                                    >
+                                        <%= group %>
+                                    </option>
+
+                                <% }) %>
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- Address -->
+
+                        <div class="form-group full-width">
+
+                            <label for="address">
+                                Address
+                            </label>
+
+                            <textarea
+                                id="address"
+                                name="address"
+                                rows="3"
+                                placeholder="Enter your complete address"
+                            ><%= patient.address || '' %></textarea>
+
+                        </div>
+
+
+
+                        <!-- Emergency Contact -->
+
+                        <div class="form-group full-width">
+
+                            <label for="emergencyContact">
+                                Emergency Contact
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="emergencyContact"
+                                name="emergencyContact"
+                                placeholder="Enter emergency contact number"
+                                value="<%= patient.emergencyContact || '' %>"
+                            >
+
+                        </div>
+
+
+
+                        <!-- Submit -->
+
+                        <div class="profile-form-actions">
+
+                            <a
+                                href="/patient/dashboard"
+                                class="cancel-btn"
+                            >
+                                Cancel
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="dashboard-btn"
+                            >
+                                Save Changes
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <%- include("../partials/footer") %>
+
+</body>
+</html>

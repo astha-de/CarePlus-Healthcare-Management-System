@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Details | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/doctors.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="doctor-dashboard">
+
+        <div class="dashboard-container">
+
+            <div class="dashboard-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Patient Details</h1>
+
+                <p>
+                    View patient information and appointment-related details.
+                </p>
+
+            </div>
+
+
+            <section class="patient-details-section">
+
+                <div class="patient-details-card">
+
+                    <h2>
+                        <%= patient.user.name %>
+                    </h2>
+
+                    <div class="patient-detail-row">
+                        <strong>Email:</strong>
+                        <span><%= patient.user.email %></span>
+                    </div>
+
+                    <div class="patient-detail-row">
+                        <strong>Phone:</strong>
+                        <span>
+                            <%= patient.phone || "Not provided" %>
+                        </span>
+                    </div>
+
+                    <div class="patient-detail-row">
+                        <strong>Date of Birth:</strong>
+                        <span>
+                            <%= patient.dateOfBirth
+                                ? new Date(patient.dateOfBirth).toLocaleDateString("en-IN")
+                                : "Not provided"
+                            %>
+                        </span>
+                    </div>
+
+                    <div class="patient-detail-row">
+                        <strong>Gender:</strong>
+                        <span>
+                            <%= patient.gender || "Not provided" %>
+                        </span>
+                    </div>
+
+                    <div class="patient-detail-row">
+                        <strong>Address:</strong>
+                        <span>
+                            <%= patient.address || "Not provided" %>
+                        </span>
+                    </div>
+
+                    <div class="patient-detail-row">
+                        <strong>Blood Group:</strong>
+                        <span>
+                            <%= patient.bloodGroup || "Not provided" %>
+                        </span>
+                    </div>
+
+                    <div class="patient-detail-row">
+                        <strong>Emergency Contact:</strong>
+                        <span>
+                            <%= patient.emergencyContact || "Not provided" %>
+                        </span>
+                    </div>
+
+
+                    <a href="/doctor/dashboard" class="back-dashboard-btn">
+                        ← Back to Dashboard
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

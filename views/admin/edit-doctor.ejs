@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Doctor | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="admin-dashboard">
+
+        <div class="admin-container">
+
+            <div class="admin-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Edit Doctor</h1>
+
+                <p>
+                    Update doctor information.
+                </p>
+
+            </div>
+
+
+            <section class="admin-form-section">
+
+                <form
+                    action="/admin/doctors/edit/<%= doctor._id %>"
+                    method="POST"
+                    class="admin-doctor-form"
+                >
+
+                    <!-- Doctor Name -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Doctor Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value="<%= doctor.name %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Specialization -->
+
+                    <div class="form-group">
+
+                        <label for="specialization">
+                            Specialization
+                        </label>
+
+                        <input
+                            type="text"
+                            id="specialization"
+                            name="specialization"
+                            value="<%= doctor.specialization %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Department -->
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <select
+                            id="department"
+                            name="department"
+                            required
+                        >
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <% departments.forEach(department => { %>
+
+                                <option
+                                    value="<%= department._id %>"
+                                    <%= doctor.department &&
+                                        doctor.department.toString() === department._id.toString()
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    <%= department.name %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Qualification -->
+
+                    <div class="form-group">
+
+                        <label for="qualification">
+                            Qualification
+                        </label>
+
+                        <input
+                            type="text"
+                            id="qualification"
+                            name="qualification"
+                            value="<%= doctor.qualification %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Experience -->
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience (Years)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="experience"
+                            name="experience"
+                            value="<%= doctor.experience %>"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value="<%= doctor.phone %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value="<%= doctor.email %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Available Days -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Available Days
+                        </label>
+
+                        <div class="days-checkboxes">
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Monday"
+                                    <%= doctor.availableDays.includes("Monday") ? "checked" : "" %>
+                                >
+                                Monday
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Tuesday"
+                                    <%= doctor.availableDays.includes("Tuesday") ? "checked" : "" %>
+                                >
+                                Tuesday
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Wednesday"
+                                    <%= doctor.availableDays.includes("Wednesday") ? "checked" : "" %>
+                                >
+                                Wednesday
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Thursday"
+                                    <%= doctor.availableDays.includes("Thursday") ? "checked" : "" %>
+                                >
+                                Thursday
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Friday"
+                                    <%= doctor.availableDays.includes("Friday") ? "checked" : "" %>
+                                >
+                                Friday
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Saturday"
+                                    <%= doctor.availableDays.includes("Saturday") ? "checked" : "" %>
+                                >
+                                Saturday
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Sunday"
+                                    <%= doctor.availableDays.includes("Sunday") ? "checked" : "" %>
+                                >
+                                Sunday
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Available Time -->
+
+                    <div class="form-group">
+
+                        <label for="availableTime">
+                            Available Time
+                        </label>
+
+                        <input
+                            type="text"
+                            id="availableTime"
+                            name="availableTime"
+                            value="<%= doctor.availableTime %>"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- About -->
+
+                    <div class="form-group">
+
+                        <label for="about">
+                            About Doctor
+                        </label>
+
+                        <textarea
+                            id="about"
+                            name="about"
+                            rows="5"
+                            required
+                        ><%= doctor.about %></textarea>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="admin-form-actions">
+
+                        <a
+                            href="/admin/doctors"
+                            class="admin-back-btn"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="admin-submit-btn"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+</html>

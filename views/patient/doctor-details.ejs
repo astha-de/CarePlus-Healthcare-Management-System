@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Details | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/doctors.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="doctor-details-page">
+
+        <div class="doctor-details-container">
+
+            <!-- Back to Doctors -->
+
+            <a href="/patient/doctors" class="back-link">
+                ← Back to Doctors
+            </a>
+
+
+            <!-- Doctor Profile -->
+
+            <section class="doctor-profile-card">
+
+                <div class="doctor-profile-content">
+
+                    <!-- Department -->
+
+                    <span class="doctor-department">
+                        <%= doctor.department
+                            ? doctor.department.name
+                            : "General Medicine"
+                        %>
+                    </span>
+
+
+                    <!-- Doctor Name -->
+
+                    <h1>
+                        <%= doctor.name %>
+                    </h1>
+
+
+                    <!-- Specialization -->
+
+                    <h2>
+                        <%= doctor.specialization %>
+                    </h2>
+
+
+                    <!-- About Doctor -->
+
+                    <p class="doctor-about">
+                        <%= doctor.about %>
+                    </p>
+
+
+                    <!-- Doctor Information -->
+
+                    <div class="doctor-details-grid">
+
+                        <div>
+                            <strong>Qualification</strong>
+                            <p>
+                                <%= doctor.qualification %>
+                            </p>
+                        </div>
+
+
+                        <div>
+                            <strong>Experience</strong>
+                            <p>
+                                <%= doctor.experience %> years
+                            </p>
+                        </div>
+
+
+                        <div>
+                            <strong>Available Days</strong>
+                            <p>
+                                <%= doctor.availableDays.join(", ") %>
+                            </p>
+                        </div>
+
+
+                        <div>
+                            <strong>Available Time</strong>
+                            <p>
+                                <%= doctor.availableTime %>
+                            </p>
+                        </div>
+
+
+                        <div>
+                            <strong>Email</strong>
+                            <p>
+                                <%= doctor.email %>
+                            </p>
+                        </div>
+
+
+                        <div>
+                            <strong>Phone</strong>
+                            <p>
+                                <%= doctor.phone %>
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Book Appointment -->
+
+                    <a
+                        href="/appointments/book/<%= doctor._id %>"
+                        class="book-appointment-btn"
+                    >
+                        Book an Appointment
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

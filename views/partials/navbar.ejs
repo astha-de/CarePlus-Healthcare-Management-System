@@ -1,0 +1,90 @@
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <a href="/" class="nav-logo">
+            <span class="logo-mark">+</span>
+
+            <span class="logo-text">
+                Care<span>Plus</span>
+            </span>
+        </a>
+
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+
+            <a href="/" class="nav-link">
+                Home
+            </a>
+
+            <% if (currentUser && currentUser.role === "patient") { %>
+
+    <a href="/patient/doctors" class="nav-link">
+        Find Doctors
+    </a>
+
+    <a href="/appointments/history" class="nav-link">
+        Appointments
+    </a>
+
+<% } %>
+
+
+            <% if (currentUser) { %>
+
+                <% if (currentUser.role === "patient") { %>
+
+                    <a href="/patient/dashboard" class="nav-link">
+                        Dashboard
+                    </a>
+
+                <% } %>
+
+
+                <% if (currentUser.role === "doctor") { %>
+
+                    <a href="/doctor/dashboard" class="nav-link">
+                        Dashboard
+                    </a>
+
+                <% } %>
+
+
+                <% if (currentUser.role === "admin") { %>
+
+                    <a href="/admin/dashboard" class="nav-link">
+                        Dashboard
+                    </a>
+
+                <% } %>
+
+
+                <div class="nav-user">
+                    <span class="user-icon">👤</span>
+                    <span>Hi, <%= currentUser.name %></span>
+                </div>
+
+                <a href="/auth/logout" class="nav-logout">
+                    Logout
+                </a>
+
+
+            <% } else { %>
+
+                <a href="/auth/login" class="nav-login">
+                    Login
+                </a>
+
+                <a href="/auth/register" class="nav-register">
+                    Register
+                </a>
+
+            <% } %>
+
+        </nav>
+
+    </div>
+
+</header>

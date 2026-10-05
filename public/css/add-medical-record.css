@@ -1,0 +1,106 @@
+/* =========================================
+   ADD MEDICAL RECORD
+========================================= */
+
+.medical-record-form {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.form-group textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    resize: vertical;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group textarea:focus {
+    border-color: #2563eb;
+}
+
+.form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+
+/* Appointment information */
+
+.appointment-card h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.appointment-card p {
+    margin: 7px 0;
+    color: #6b7280;
+}
+
+
+/* Error message */
+
+.error-message {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 20px;
+}
+
+
+/* Form buttons */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.form-actions a {
+    text-decoration: none;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .medical-record-form {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-actions a,
+    .form-actions button {
+        width: 100%;
+        text-align: center;
+    }
+}

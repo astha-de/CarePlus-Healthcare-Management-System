@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Dashboard - CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-container">
+
+            <section class="welcome-box">
+
+                <div>
+                    <p>Welcome back</p>
+
+                    <h1>
+                        Hello, <%= currentUser.name %> 👋
+                    </h1>
+
+                    <p>
+                        Manage your healthcare, appointments and medical
+                        records from one place.
+                    </p>
+                </div>
+
+                <a href="/patient/doctors" class="dashboard-btn">
+                    Find a Doctor
+                </a>
+
+            </section>
+
+
+            <section class="dashboard-stats">
+
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div>
+                        <h3><%= appointments.length %></h3>
+                        <p>Total Appointments</p>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon">⏰</div>
+                    <div>
+                        <h3><%= upcomingAppointments.length %></h3>
+                        <p>Upcoming</p>
+                    </div>
+                </div>
+
+
+                <a href="/patient/doctors" class="stat-card stat-link">
+    <div class="stat-icon">👨‍⚕️</div>
+    <div>
+        <h3>Doctors</h3>
+        <p>Find & Book</p>
+    </div>
+</a>
+
+<a href="/patient/medical-records" class="stat-card stat-link">
+    <div class="stat-icon">🩺</div>
+    <div>
+        <h3>Records</h3>
+        <p>Medical History</p>
+    </div>
+</a>
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Quick Actions</h2>
+                        <p>Access your healthcare services.</p>
+                    </div>
+                </div>
+
+
+                <div class="quick-actions">
+
+                    <a href="/patient/doctors" class="action-card">
+                        <span>👨‍⚕️</span>
+                        <h3>Find Doctors</h3>
+                        <p>Search and book an appointment.</p>
+                    </a>
+
+
+                    <a href="/appointments/history" class="action-card">
+                        <span>📅</span>
+                        <h3>My Appointments</h3>
+                        <p>View your appointments.</p>
+                    </a>
+
+
+                    <a href="/patient/profile" class="action-card">
+                        <span>👤</span>
+                        <h3>My Profile</h3>
+                        <p>Manage your profile.</p>
+                    </a>
+
+
+                    <a href="/patient/medical-records" class="action-card">
+                        <span>🩺</span>
+                        <h3>Medical Records</h3>
+                        <p>View your medical records.</p>
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Upcoming Appointments</h2>
+                        <p>Your scheduled appointments.</p>
+                    </div>
+
+                </div>
+
+
+                <% if (upcomingAppointments.length === 0) { %>
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">📅</div>
+
+                        <h3>No upcoming appointments</h3>
+
+                        <p>
+                            You don't have any upcoming appointments.
+                        </p>
+
+                        <a
+                            href="/patient/doctors"
+                            class="dashboard-btn"
+                        >
+                            Book an Appointment
+                        </a>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="appointment-list">
+
+                        <% upcomingAppointments.slice(0, 3).forEach(appointment => { %>
+
+                            <div class="appointment-card">
+
+                                <div class="doctor-avatar">
+    <span>Dr</span>
+</div>
+
+                                <div class="appointment-info">
+
+                                    <h3>
+                                         <%= appointment.doctor.name %>
+                                    </h3>
+
+                                    <p>
+                                        <%= appointment.doctor.specialization %>
+                                    </p>
+
+                                </div>
+
+
+                                <div class="appointment-date">
+
+                                    <strong>
+    <%= new Date(appointment.appointmentDate).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    }) %>
+</strong>
+
+                                    <span class="status-badge status-<%= appointment.status.toLowerCase() %>">
+    <%= appointment.status %>
+</span>
+
+                                </div>
+
+
+                               
+
+                            </div>
+
+                        <% }) %>
+
+                    </div>
+
+                <% } %>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+</html>

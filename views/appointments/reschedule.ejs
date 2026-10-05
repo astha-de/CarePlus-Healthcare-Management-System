@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reschedule Appointment | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/appointments.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="reschedule-page">
+
+        <div class="reschedule-container">
+
+            <div class="reschedule-header">
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Reschedule Appointment</h1>
+
+                <p>Choose a new date and time for your appointment.</p>
+            </div>
+
+
+            <div class="reschedule-card">
+
+                <div class="doctor-summary">
+
+                    <h2>
+                        Dr. <%= appointment.doctor.name %>
+                    </h2>
+
+                    <p>
+                        <%= appointment.doctor.specialization %>
+                    </p>
+
+                </div>
+
+
+                <form
+                    action="/appointments/reschedule/<%= appointment._id %>"
+                    method="POST"
+                    class="reschedule-form"
+                >
+
+                    <div class="form-group">
+
+                        <label for="appointmentDate">
+                            New Appointment Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="appointmentDate"
+                            name="appointmentDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="appointmentTime">
+                            New Appointment Time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="appointmentTime"
+                            name="appointmentTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="reschedule-actions">
+
+                        <a
+                            href="/appointments/history"
+                            class="back-btn"
+                        >
+                            Back
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="reschedule-submit-btn"
+                        >
+                            Confirm Reschedule
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

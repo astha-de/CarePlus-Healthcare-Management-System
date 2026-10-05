@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Appointment | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/appointments.css">
+
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+
+    <main class="booking-page">
+
+        <div class="booking-container">
+
+            <a href="/patient/doctors" class="back-link">
+                ← Back to Doctors
+            </a>
+
+
+            <div class="booking-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Book Your Appointment</h1>
+
+                <p>
+                    Schedule an appointment with your preferred doctor.
+                </p>
+
+            </div>
+
+
+            <% if (error) { %>
+
+                <div class="alert-error">
+                    <%= error %>
+                </div>
+
+            <% } %>
+
+
+            <div class="booking-layout">
+
+
+                <!-- Doctor Information -->
+
+                <section class="booking-doctor-card">
+
+                    
+                    <div>
+
+                        <span class="doctor-department">
+                            <%= doctor.department
+                                ? doctor.department.name
+                                : "General Medicine" %>
+                        </span>
+
+                        <h2>
+                             <%= doctor.name %>
+                        </h2>
+
+                        <p class="booking-specialization">
+                            <%= doctor.specialization %>
+                        </p>
+
+                        <p>
+                            <strong>Qualification:</strong>
+                            <%= doctor.qualification %>
+                        </p>
+
+                        <p>
+                            <strong>Experience:</strong>
+                            <%= doctor.experience %> years
+                        </p>
+
+                        <p>
+                            <strong>Available:</strong>
+                            <%= doctor.availableDays.join(", ") %>
+                        </p>
+
+                        <p>
+                            <strong>Timing:</strong>
+                            <%= doctor.availableTime %>
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Booking Form -->
+
+                <section class="booking-form-card">
+
+                    <h2>Appointment Details</h2>
+
+                    <p class="form-description">
+                        Please provide your preferred appointment details.
+                    </p>
+
+
+                    <form
+                        action="/appointments/book/<%= doctor._id %>"
+                        method="POST"
+                    >
+
+
+                        <div class="form-group">
+
+                            <label for="appointmentDate">
+                                Appointment Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="appointmentDate"
+                                name="appointmentDate"
+                                min="<%= new Date().toISOString().split('T')[0] %>"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="appointmentTime">
+                                Appointment Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="appointmentTime"
+                                name="appointmentTime"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="reason">
+                                Reason for Visit
+                            </label>
+
+                            <textarea
+                                id="reason"
+                                name="reason"
+                                rows="5"
+                                placeholder="Briefly describe your reason for consultation..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="confirm-booking-btn"
+                        >
+                            Confirm Appointment
+                        </button>
+
+
+                        <a
+                            href="/patient/doctors"
+                            class="cancel-booking-btn"
+                        >
+                            Cancel
+                        </a>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

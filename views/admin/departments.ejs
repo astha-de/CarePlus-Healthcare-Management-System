@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Departments | CarePlus</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/css/admin.css"
+    >
+
+</head>
+
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+
+    <main class="admin-page">
+
+        <div class="admin-container">
+
+
+            <!-- Header -->
+
+            <section class="admin-header">
+
+                <div>
+
+                    <span class="admin-label">
+                        ADMINISTRATION
+                    </span>
+
+                    <h1>Department Management</h1>
+
+                    <p>
+                        Manage healthcare departments
+                        available in CarePlus.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Alerts -->
+
+            <% if (typeof error !== "undefined" && error) { %>
+
+                <div class="alert alert-error">
+                    <%= error %>
+                </div>
+
+            <% } %>
+
+
+            <% if (typeof success !== "undefined" && success) { %>
+
+                <div class="alert alert-success">
+                    <%= success %>
+                </div>
+
+            <% } %>
+
+
+            <!-- Add Department -->
+
+            <section class="admin-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>Add New Department</h2>
+
+                        <p>
+                            Create a department for
+                            organizing doctors.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    action="/admin/departments/add"
+                    method="POST"
+                    class="department-form"
+                >
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Department Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="e.g. Cardiology"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            rows="3"
+                            placeholder="Enter department description..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="admin-primary-btn"
+                    >
+                        + Add Department
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- Department List -->
+
+            <section class="admin-card">
+
+                <div class="card-heading">
+
+                    <div>
+
+                        <h2>All Departments</h2>
+
+                        <p>
+                            <%= departments.length %>
+                            department(s) available
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <% if (departments.length === 0) { %>
+
+                    <div class="empty-admin">
+
+                        <div>
+                            🏥
+                        </div>
+
+                        <h3>
+                            No departments added yet
+                        </h3>
+
+                        <p>
+                            Add your first department
+                            using the form above.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+
+                    <div class="department-grid">
+
+
+                        <% departments.forEach(department => { %>
+
+
+                            <div class="department-card">
+
+                                <div class="department-icon">
+                                    🏥
+                                </div>
+
+
+                                <div class="department-content">
+
+                                    <h3>
+                                        <%= department.name %>
+                                    </h3>
+
+                                    <p>
+                                        <%= department.description %>
+                                    </p>
+
+                                </div>
+
+
+                                <form
+                                    action="/admin/departments/delete/<%= department._id %>"
+                                    method="POST"
+                                    onsubmit="return confirm('Delete this department?');"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="delete-btn"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+
+                        <% }) %>
+
+
+                    </div>
+
+
+                <% } %>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

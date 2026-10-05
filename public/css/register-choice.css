@@ -1,0 +1,263 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eef8ff, #f5fbff, #e8f7f5);
+    color: #243447;
+}
+
+/* Navbar */
+
+.navbar {
+    height: 75px;
+    padding: 0 8%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 15px rgba(20, 70, 90, 0.07);
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    text-decoration: none;
+    color: #075985;
+}
+
+.logo span {
+    color: #0d9488;
+}
+
+.login-btn {
+    color: #087f8c;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #0d9488;
+    padding: 9px 23px;
+    border-radius: 25px;
+    transition: 0.25s;
+}
+
+.login-btn:hover {
+    color: white;
+    background: #0d9488;
+}
+
+/* Main content */
+
+.page-container {
+    width: 92%;
+    max-width: 950px;
+    margin: 45px auto;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.medical-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 15px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #0891b2, #0d9488);
+    color: white;
+    font-size: 30px;
+    box-shadow: 0 5px 15px #0891b233;
+}
+
+.welcome {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #0d9488;
+    margin-bottom: 9px;
+}
+
+.heading h1 {
+    font-size: 32px;
+    color: #123b59;
+    margin-bottom: 9px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #718096;
+}
+
+/* Role cards */
+
+.role-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.role-card {
+    background: white;
+    border: 1px solid #e0edf2;
+    border-radius: 16px;
+    padding: 27px;
+    box-shadow: 0 8px 25px rgba(25, 75, 95, 0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(25, 75, 95, 0.12);
+}
+
+.role-icon {
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+.patient-icon {
+    color: #087fba;
+    background: #e0f2fe;
+}
+
+.doctor-icon {
+    color: #0d9488;
+    background: #ccfbf1;
+}
+
+.role-card h2 {
+    font-size: 22px;
+    color: #163c54;
+    margin-bottom: 10px;
+}
+
+.role-card > p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 70px;
+}
+
+.role-card ul {
+    list-style: none;
+    margin: 17px 0 23px;
+}
+
+.role-card li {
+    color: #475569;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.patient-card li {
+    color: #087fba;
+}
+
+.doctor-card li {
+    color: #0d9488;
+}
+
+/* Buttons */
+
+.role-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.patient-card .role-btn {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+}
+
+.patient-card .role-btn:hover {
+    background: #075985;
+}
+
+.doctor-card .role-btn {
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+}
+
+.doctor-card .role-btn:hover {
+    background: #115e59;
+}
+
+/* Bottom text */
+
+.bottom-text {
+    text-align: center;
+    margin-top: 27px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.bottom-text a {
+    color: #087f8c;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.bottom-text a:hover {
+    text-decoration: underline;
+}
+
+.security-note {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* Responsive */
+
+@media (max-width: 650px) {
+    .navbar {
+        height: 65px;
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .page-container {
+        margin: 30px auto;
+    }
+
+    .heading h1 {
+        font-size: 26px;
+    }
+
+    .role-container {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .role-card {
+        padding: 23px;
+    }
+
+    .role-card > p {
+        min-height: auto;
+    }
+}

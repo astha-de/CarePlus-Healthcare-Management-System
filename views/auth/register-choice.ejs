@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/register-choice.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="/" class="logo">Care<span>Plus</span></a>
+        <a href="/auth/login" class="login-btn">Login</a>
+    </header>
+
+    <main class="page-container">
+
+        <div class="heading">
+            <div class="medical-icon">✚</div>
+            <p class="welcome">WELCOME TO CAREPLUS</p>
+            <h1>Create Your Account</h1>
+            <p class="subtitle">
+                Select your account type to get started.
+            </p>
+        </div>
+
+        <div class="role-container">
+
+            <!-- Patient Card -->
+            <div class="role-card patient-card">
+                <div class="role-icon patient-icon">♥</div>
+
+                <h2>I'm a Patient</h2>
+
+                <p>
+                    Find doctors, book appointments and
+                    manage your healthcare in one place.
+                </p>
+
+                <ul>
+                    <li>✓ Browse doctor profiles</li>
+                    <li>✓ Book appointments</li>
+                    <li>✓ Manage your medical records</li>
+                </ul>
+
+                <a href="/auth/patient-register" class="role-btn">
+                    Register as Patient →
+                </a>
+            </div>
+
+            <!-- Doctor Card -->
+            <div class="role-card doctor-card">
+                <div class="role-icon doctor-icon">✚</div>
+
+                <h2>I'm a Doctor</h2>
+
+                <p>
+                    Create your professional profile and
+                    manage patient appointments.
+                </p>
+
+                <ul>
+                    <li>✓ Create your doctor profile</li>
+                    <li>✓ Manage appointments</li>
+                    <li>✓ View patient details</li>
+                </ul>
+
+                <a href="/auth/doctor-register" class="role-btn">
+                    Register as Doctor →
+                </a>
+            </div>
+
+        </div>
+
+        <p class="bottom-text">
+            Already have an account?
+            <a href="/auth/login">Login here</a>
+        </p>
+
+        <p class="security-note">
+            🔒 Your account information is kept secure.
+        </p>
+
+    </main>
+
+</body>
+</html>

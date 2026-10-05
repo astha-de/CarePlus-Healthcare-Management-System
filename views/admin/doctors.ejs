@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Doctors | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="admin-dashboard">
+
+        <div class="admin-container">
+
+            <div class="admin-header">
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Manage Doctors</h1>
+
+                <p>
+                    View and manage all doctors registered in the system.
+                </p>
+            </div>
+
+
+            <!-- PAGE ACTIONS -->
+
+            <div class="admin-page-actions">
+
+                <a href="/admin/dashboard" class="admin-back-btn">
+                    ← Dashboard
+                </a>
+
+                <a href="/admin/doctors/add" class="admin-add-btn">
+                    + Add Doctor
+                </a>
+
+            </div>
+
+
+            <!-- DOCTORS TABLE -->
+
+            <section class="doctors-table-section">
+
+                <% if (doctors.length === 0) { %>
+
+                    <div class="admin-empty-message">
+
+                        <h3>No doctors found</h3>
+
+                        <p>
+                            There are no doctors registered in the system.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <div class="admin-table-wrapper">
+
+                        <table class="admin-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Specialization</th>
+                                    <th>Department</th>
+                                    <th>Qualification</th>
+                                    <th>Experience</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                <% doctors.forEach(doctor => { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <strong>
+                                                <%= doctor.name %>
+                                            </strong>
+                                        </td>
+
+
+                                        <td>
+                                            <%= doctor.specialization %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= doctor.department
+                                                ? doctor.department.name
+                                                : "Not assigned"
+                                            %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= doctor.qualification %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= doctor.experience %> years
+                                        </td>
+
+
+                                        <td>
+                                            <%= doctor.phone %>
+                                        </td>
+
+
+                                        <td>
+                                            <%= doctor.email %>
+                                        </td>
+
+
+                                        <td>
+
+                                            <div class="admin-action-buttons">
+
+                                                <a
+                                                    href="/admin/doctors/edit/<%= doctor._id %>"
+                                                    class="admin-edit-btn"
+                                                >
+                                                    Edit
+                                                </a>
+
+
+                                                <form
+                                                    action="/admin/doctors/delete/<%= doctor._id %>"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this doctor?');"
+                                                >
+
+                                                    <button
+                                                        type="submit"
+                                                        class="admin-delete-btn"
+                                                    >
+                                                        Delete
+                                                    </button>
+
+                                                </form>
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+
+                                <% }) %>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                <% } %>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+</html>

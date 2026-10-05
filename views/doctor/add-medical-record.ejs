@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Medical Record | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/doctors.css">
+    <link rel="stylesheet" href="/css/add-medical-record.css">
+    
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="doctor-dashboard">
+
+        <div class="dashboard-container">
+
+            <div class="dashboard-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Add Medical Record</h1>
+
+                <p>
+                    Add medical information for the completed appointment.
+                </p>
+
+            </div>
+
+
+            <section class="appointments-section">
+
+                <div class="appointment-card">
+
+                    <h2>
+                        Patient:
+                        <%= patient.user ? patient.user.name : "Patient" %>
+                    </h2>
+
+                    <p>
+                        Appointment Date:
+                        <%= new Date(appointment.appointmentDate).toLocaleDateString(
+                            "en-IN",
+                            {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }
+                        ) %>
+                    </p>
+
+                    <p>
+                        Appointment Time:
+                        <%= appointment.appointmentTime %>
+                    </p>
+
+                </div>
+
+
+                <% if (error) { %>
+
+                    <div class="error-message">
+                        <%= error %>
+                    </div>
+
+                <% } %>
+
+
+                <form
+                    action="/doctor/patient/<%= patient._id %>/record/<%= appointment._id %>"
+                    method="POST"
+                    class="medical-record-form"
+                >
+
+                    <div class="form-group">
+
+                        <label for="diagnosis">
+                            Diagnosis
+                        </label>
+
+                        <textarea
+                            id="diagnosis"
+                            name="diagnosis"
+                            rows="4"
+                            placeholder="Enter diagnosis"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="prescription">
+                            Prescription
+                        </label>
+
+                        <textarea
+                            id="prescription"
+                            name="prescription"
+                            rows="4"
+                            placeholder="Enter prescription"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="notes">
+                            Doctor's Notes
+                        </label>
+
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            rows="5"
+                            placeholder="Enter additional notes"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <a
+                            href="/doctor/dashboard"
+                            class="view-patient-btn"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="confirm-btn"
+                        >
+                            Save Medical Record
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

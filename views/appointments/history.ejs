@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Appointment History | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/appointments.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="history-page">
+
+        <div class="history-container">
+
+            <div class="history-header">
+                <span>CAREPLUS HEALTHCARE</span>
+                <h1>My Appointments</h1>
+                <p>View and manage all your appointments.</p>
+            </div>
+
+            <% if (appointments.length === 0) { %>
+
+                <div class="empty-appointments">
+
+                    <div class="empty-icon">📅</div>
+
+                    <h2>No Appointments Yet</h2>
+
+                    <p>
+                        You haven't booked any appointments yet.
+                    </p>
+
+                    <a href="/patient/doctors" class="find-doctor-btn">
+                        Find a Doctor
+                    </a>
+
+                </div>
+
+            <% } else { %>
+
+                <div class="appointments-list">
+
+                    <% appointments.forEach(appointment => { %>
+
+                        <div class="history-card">
+
+    <div class="history-doctor">
+
+        
+
+        <div>
+                                    
+                                        <h2>
+    <%= appointment.doctor ? appointment.doctor.name : "Doctor" %>
+</h2>
+                                    
+
+                                    <p class="history-specialization">
+                                        <%= appointment.doctor
+                                            ? appointment.doctor.specialization
+                                            : "Medical Specialist" %>
+                                    </p>
+
+                                    <span class="history-department">
+                                        <%= appointment.doctor &&
+                                            appointment.doctor.department
+                                            ? appointment.doctor.department.name
+                                            : "General Medicine" %>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="history-details">
+
+                                <div class="detail-item">
+                                    <span>📅 Date</span>
+                                    <strong>
+                                        <%= new Date(appointment.appointmentDate).toLocaleDateString("en-IN", {
+                                            day: "2-digit",
+                                            month: "short",
+                                            year: "numeric"
+                                        }) %>
+                                    </strong>
+                                </div>
+
+                                <div class="detail-item">
+                                    <span>⏰ Time</span>
+                                    <strong>
+                                        <%= appointment.appointmentTime %>
+                                    </strong>
+                                </div>
+
+                                <div class="detail-item">
+                                    <span>📝 Reason</span>
+                                    <strong>
+                                        <%= appointment.reason %>
+                                    </strong>
+                                </div>
+
+                                <div class="detail-item">
+                                    <span>Status</span>
+
+                                    <span class="status-badge status-<%= appointment.status.toLowerCase() %>">
+                                        <%= appointment.status %>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <% if (appointment.cancellationReason) { %>
+
+                                <div class="cancellation-info">
+
+                                    <strong>Cancellation Reason:</strong>
+
+                                    <%= appointment.cancellationReason %>
+
+                                </div>
+
+                            <% } %>
+<div class="history-actions">
+
+    <% if (
+        appointment.status === "Pending" ||
+        appointment.status === "Confirmed"
+    ) { %>
+
+        <a
+            href="/appointments/reschedule/<%= appointment._id %>"
+            class="reschedule-btn"
+        >
+            Reschedule
+        </a>
+
+        <form
+            action="/appointments/cancel/<%= appointment._id %>"
+            method="POST"
+            onsubmit="return confirm('Are you sure you want to cancel this appointment?');"
+        >
+            <button
+                type="submit"
+                class="cancel-appointment-btn"
+            >
+                Cancel Appointment
+            </button>
+        </form>
+
+    <% } %>
+
+
+    <% if (
+        appointment.status === "Cancelled" ||
+        appointment.status === "Completed"
+    ) { %>
+
+        <form
+            action="/appointments/delete/<%= appointment._id %>"
+            method="POST"
+            onsubmit="return confirm('Are you sure you want to permanently delete this appointment from your history?');"
+        >
+            <button
+                type="submit"
+                class="delete-appointment-btn"
+            >
+                Delete
+            </button>
+        </form>
+
+    <% } %>
+
+</div>
+
+                            </div>
+
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    </main>
+
+    <%- include("../partials/footer") %>
+
+</body>
+</html>

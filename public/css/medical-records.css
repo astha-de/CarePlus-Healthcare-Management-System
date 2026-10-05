@@ -1,0 +1,87 @@
+/* =========================================
+   MEDICAL RECORDS
+========================================= */
+
+.medical-record-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.medical-record-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.record-header h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+}
+
+.record-header p {
+    margin: 0;
+    color: #6b7280;
+}
+
+.record-date {
+    font-size: 14px;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.record-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.record-item {
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.record-item h4 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.record-item p {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .record-header {
+        flex-direction: column;
+    }
+
+    .record-content {
+        grid-template-columns: 1fr;
+    }
+
+    .medical-record-card {
+        padding: 18px;
+    }
+}

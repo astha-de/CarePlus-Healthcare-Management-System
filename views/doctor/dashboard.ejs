@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Dashboard | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/doctors.css">
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+    <main class="doctor-dashboard">
+
+        <div class="dashboard-container">
+
+            <!-- Dashboard Header -->
+
+            <div class="dashboard-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>
+                    Welcome, <strong><%= doctor.name %></strong>
+                </h1>
+
+                <p>
+                    Manage your appointments and patients from your dashboard.
+                </p>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <h3>Upcoming Appointments</h3>
+                    <strong>
+                        <%= upcomingAppointments.length %>
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Pending Appointments</h3>
+                    <strong>
+                        <%= pendingAppointments.length %>
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Completed Appointments</h3>
+                    <strong>
+                        <%= completedAppointments.length %>
+                    </strong>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Patients</h3>
+                    <strong>
+                        <%= totalPatients %>
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- Appointments -->
+
+            <section class="appointments-section">
+
+                <h2>My Appointments</h2>
+
+                <% if (appointments.length === 0) { %>
+
+                    <div class="empty-message">
+
+                        <h3>No appointments yet</h3>
+
+                        <p>
+                            You don't have any appointments at the moment.
+                        </p>
+
+                    </div>
+
+                <% } else { %>
+
+                    <% appointments.forEach(appointment => { %>
+
+                        <div class="appointment-card">
+
+                            <!-- Appointment Top -->
+
+                            <div class="appointment-top">
+
+                                <div>
+
+                                    <h3>
+                                        <%= appointment.patient
+                                            ? appointment.patient.user.name
+                                            : "Patient"
+                                        %>
+                                    </h3>
+
+                                    <p>
+                                        <%= appointment.patient
+                                            ? appointment.patient.user.email
+                                            : ""
+                                        %>
+                                    </p>
+
+                                </div>
+
+
+                                <!-- Appointment Status -->
+
+                                <span class="status status-<%= appointment.status.toLowerCase() %>">
+
+                                    <%= appointment.status %>
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- Appointment Information -->
+
+                            <div class="appointment-info">
+
+                                <span>
+                                    📅
+                                    <strong>Date:</strong>
+
+                                    <%= new Date(
+                                        appointment.appointmentDate
+                                    ).toLocaleDateString("en-IN", {
+                                        day: "2-digit",
+                                        month: "short",
+                                        year: "numeric"
+                                    }) %>
+
+                                </span>
+
+
+                                <span>
+                                    ⏰
+                                    <strong>Time:</strong>
+
+                                    <%= appointment.appointmentTime %>
+
+                                </span>
+
+
+                                <span>
+                                    📝
+                                    <strong>Reason:</strong>
+
+                                    <%= appointment.reason %>
+
+                                </span>
+
+                            </div>
+
+
+                            <!-- Appointment Actions -->
+
+                            <div class="doctor-appointment-actions">
+
+
+                                <!-- View Patient Details -->
+
+                                <% if (appointment.patient) { %>
+
+                                    <a
+                                        href="/doctor/patient/<%= appointment.patient._id %>"
+                                        class="view-patient-btn"
+                                    >
+                                        View Patient Details
+                                    </a>
+
+                                <% } %>
+                                <% if (appointment.status === "Completed" && appointment.patient) { %>
+
+    <a
+        href="/doctor/patient/<%= appointment.patient._id %>/record/<%= appointment._id %>"
+        class="medical-record-btn"
+    >
+        Add Medical Record
+    </a>
+
+<% } %>
+                                
+
+
+
+                                <!-- Pending Appointment -->
+
+                                <% if (appointment.status === "Pending") { %>
+
+                                    <form
+                                        action="/appointments/confirm/<%= appointment._id %>"
+                                        method="POST"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="confirm-btn"
+                                        >
+                                            Confirm Appointment
+                                        </button>
+
+                                    </form>
+
+
+                                    <form
+                                        action="/appointments/reject/<%= appointment._id %>"
+                                        method="POST"
+                                        onsubmit="return confirm('Are you sure you want to reject this appointment?');"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="reject-btn"
+                                        >
+                                            Reject Appointment
+                                        </button>
+
+                                    </form>
+
+                                <% } %>
+
+
+                                <!-- Confirmed Appointment -->
+
+                                <% if (appointment.status === "Confirmed") { %>
+
+                                    <form
+                                        action="/appointments/complete/<%= appointment._id %>"
+                                        method="POST"
+                                        onsubmit="return confirm('Mark this appointment as completed?');"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="complete-btn"
+                                        >
+                                            Mark as Completed
+                                        </button>
+
+                                    </form>
+
+                                <% } %>
+
+
+                            </div>
+
+                        </div>
+
+                    <% }) %>
+
+                <% } %>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>

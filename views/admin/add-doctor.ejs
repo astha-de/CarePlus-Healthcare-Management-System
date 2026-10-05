@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Add Doctor | CarePlus</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+<body>
+
+    <%- include("../partials/navbar") %>
+
+
+    <main class="admin-dashboard">
+
+        <div class="admin-container">
+
+
+            <div class="admin-header">
+
+                <span>CAREPLUS HEALTHCARE</span>
+
+                <h1>Add New Doctor</h1>
+
+                <p>
+                    Add a new doctor to the CarePlus healthcare system.
+                </p>
+
+            </div>
+
+
+            <section class="admin-form-section">
+
+                <form
+                    action="/admin/doctors/add"
+                    method="POST"
+                    class="admin-doctor-form"
+                >
+
+
+                    <!-- Doctor Name -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Doctor Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter doctor name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Specialization -->
+
+                    <div class="form-group">
+
+                        <label for="specialization">
+                            Specialization
+                        </label>
+
+                        <input
+                            type="text"
+                            id="specialization"
+                            name="specialization"
+                            placeholder="e.g. Cardiologist"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Department -->
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <select
+                            id="department"
+                            name="department"
+                            required
+                        >
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <% departments.forEach(department => { %>
+
+                                <option value="<%= department._id %>">
+                                    <%= department.name %>
+                                </option>
+
+                            <% }) %>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Qualification -->
+
+                    <div class="form-group">
+
+                        <label for="qualification">
+                            Qualification
+                        </label>
+
+                        <input
+                            type="text"
+                            id="qualification"
+                            name="qualification"
+                            placeholder="e.g. MBBS, MD"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Experience -->
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            Experience (Years)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="experience"
+                            name="experience"
+                            min="0"
+                            placeholder="e.g. 10"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter phone number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="doctor@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Available Days -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Available Days
+                        </label>
+
+                        <div class="days-checkboxes">
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Monday"
+                                >
+                                Monday
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Tuesday"
+                                >
+                                Tuesday
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Wednesday"
+                                >
+                                Wednesday
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Thursday"
+                                >
+                                Thursday
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Friday"
+                                >
+                                Friday
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Saturday"
+                                >
+                                Saturday
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="availableDays"
+                                    value="Sunday"
+                                >
+                                Sunday
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Available Time -->
+
+                    <div class="form-group">
+
+                        <label for="availableTime">
+                            Available Time
+                        </label>
+
+                        <input
+                            type="text"
+                            id="availableTime"
+                            name="availableTime"
+                            placeholder="e.g. 10:00 AM - 2:00 PM"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- About -->
+
+                    <div class="form-group">
+
+                        <label for="about">
+                            About Doctor
+                        </label>
+
+                        <textarea
+                            id="about"
+                            name="about"
+                            rows="5"
+                            placeholder="Write something about the doctor..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="admin-form-actions">
+
+                        <a
+                            href="/admin/doctors"
+                            class="admin-back-btn"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="admin-submit-btn"
+                        >
+                            Add Doctor
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <%- include("../partials/footer") %>
+
+</body>
+
+</html>
