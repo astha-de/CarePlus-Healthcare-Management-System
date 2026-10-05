@@ -49,6 +49,13 @@ app.use((req, res, next) => {
     next();
 });
 
+const dns = require("dns");
+
+dns.setServers([
+    "8.8.8.8",
+    "1.1.1.1"
+]);
+
 
 
 
